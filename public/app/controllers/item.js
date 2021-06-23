@@ -1,4 +1,4 @@
-app.controller('itemsController', function ($scope, $http, API_URL) {
+app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
     //fetch items listing from 
     $http({
         method: 'GET',
@@ -12,25 +12,25 @@ app.controller('itemsController', function ($scope, $http, API_URL) {
     });
     //show modal form
     $scope.toggle = function (modalstate, id) {
-    $scope.modalstate = modalstate;
-    $scope.item = null;
-    switch (modalstate) {
-        case 'add':
-            $scope.form_title = "Add New Item";
-        break;
-        case 'edit':
-            $scope.form_title = "Item Detail";
-            $scope.id = id;
-            $http.get(API_URL + 'items/' + id)
-            .then(function (response) {
-                console.log(response.data);
-                $scope.item = response.data;
-            });
-        break;
-        default:
-        break;
-    }
-    console.log(id);
+        $scope.modalstate = modalstate;
+        $scope.item = null;
+        switch (modalstate) {
+            case 'add':
+                $scope.form_title = "Add New Item";
+            break;
+            case 'edit':
+                $scope.form_title = "Item Detail";
+                $scope.id = id;
+                $http.get(API_URL + 'items/' + id)
+                .then(function (response) {
+                    console.log(response.data);
+                    $scope.item = response.data;
+                });
+            break;
+            default:
+            break;
+        }
+        console.log(id);
         $('#myModal').modal('show');
     }
     //save new record and update existing record
@@ -40,20 +40,28 @@ app.controller('itemsController', function ($scope, $http, API_URL) {
         //append customer id to the URL if the form is in edit mode
         if (modalstate === 'edit') {
             url += "/" + id;
-            method = "PUT";
+            method = "PATCH";
         }
-        $http({
-            method: method,
-            url: url,
-            data: $.param($scope.customer),
-            headers: { 'Content-Type': 'application/json' }
-        }).then(function (response) {
-            console.log(response);
-            location.reload();
-        }), (function (error) {
-            console.log(error);
-            alert('This is embarassing. An error has occurred. Please check the log for details');
-        });
+        console.log(appHelper.generateDateToIsoString());
+        let itemDataInJSON = {
+            "title": $scope.item.title,
+            "description": $scope.item.description,
+            "created_at": $scope.item.created_at,
+            "updated_at": $scope.item.updated_at
+        }
+        // console.log(data);
+        // $http({
+        //     method: method,
+        //     url: url,
+        //     data: itemDataInJSON,
+        //     headers: { 'Content-Type': 'application/json' }
+        // }).then(function (response) {
+        //     console.log(response);
+        //     location.reload();
+        // }), (function (error) {
+        //     console.log(error);
+        //     alert('This is embarassing. An error has occurred. Please check the log for details');
+        // });
     }
     //delete record
     $scope.confirmDelete = function (id) {
