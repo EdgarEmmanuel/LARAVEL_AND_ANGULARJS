@@ -23,14 +23,14 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
                 $scope.id = id;
                 $http.get(API_URL + 'items/' + id)
                 .then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     $scope.item = response.data;
                 });
             break;
             default:
             break;
         }
-        console.log(id);
+        // console.log(id);
         $('#myModal').modal('show');
     }
     //save new record and update existing record
@@ -42,26 +42,28 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             url += "/" + id;
             method = "PATCH";
         }
-        console.log(appHelper.generateDateToIsoString());
+        
         let itemDataInJSON = {
             "title": $scope.item.title,
             "description": $scope.item.description,
-            "created_at": $scope.item.created_at,
-            "updated_at": $scope.item.updated_at
+            "created_at": appHelper.generateDateWithMyslFormat(),
+            "updated_at": appHelper.generateDateWithMyslFormat()
         }
-        // console.log(data);
-        // $http({
-        //     method: method,
-        //     url: url,
-        //     data: itemDataInJSON,
-        //     headers: { 'Content-Type': 'application/json' }
-        // }).then(function (response) {
-        //     console.log(response);
-        //     location.reload();
-        // }), (function (error) {
-        //     console.log(error);
-        //     alert('This is embarassing. An error has occurred. Please check the log for details');
-        // });
+
+        var item = new item();
+
+        $http({
+            method: method,
+            url: url,
+            data: itemDataInJSON,
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            // console.log(response);
+            location.reload();
+        }), (function (error) {
+            // console.log(error);
+            alert('This is embarassing. An error has occurred. Please check the log for details');
+        });
     }
     //delete record
     $scope.confirmDelete = function (id) {
