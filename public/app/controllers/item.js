@@ -13,18 +13,18 @@ app.controller('itemsController', function ($scope, $http, API_URL) {
     //show modal form
     $scope.toggle = function (modalstate, id) {
     $scope.modalstate = modalstate;
-    $scope.customer = null;
+    $scope.item = null;
     switch (modalstate) {
         case 'add':
-            $scope.form_title = "Add New Customer";
+            $scope.form_title = "Add New Item";
         break;
         case 'edit':
-            $scope.form_title = "Customer Detail";
+            $scope.form_title = "Item Detail";
             $scope.id = id;
-            $http.get(API_URL + 'customers/' + id)
+            $http.get(API_URL + 'items/' + id)
             .then(function (response) {
-                console.log(response);
-                $scope.customer = response.data.customer;
+                console.log(response.data);
+                $scope.item = response.data;
             });
         break;
         default:

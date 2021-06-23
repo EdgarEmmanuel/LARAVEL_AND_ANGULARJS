@@ -22,9 +22,9 @@ crossorigin="anonymous">
 	<thead>
 	<tr>
 	<th>ID</th>
-	<th>Name</th>
-	<th>Email</th>
-	<th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="toggle('add', 0)">Add New customer</button></th>
+	<th>Title</th>
+	<th>Description</th>
+	<th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="toggle('add', 0)">Add New Item</button></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -51,35 +51,24 @@ crossorigin="anonymous">
 				</button>
 			</div>
 		<div class="modal-body">
-		<form name="frmcustomers" class="form-horizontal" novalidate="">
+	<form name="frmcustomers" class="form-horizontal" novalidate="">
 		<div class="form-group error">
-		<label for="inputEmail3" class="col-sm-12 control-label">Name</label>
-		<div class="col-sm-12">
-		<input type="text" class="form-control has-error" id="name" name="name" placeholder="Fullname" value="<%=name%>" ng-model="customer.name" ng-required="true">
-		<span class="help-inline" ng-show="frmcustomers.name.$invalid && frmcustomers.name.$touched">
-			Name
-		field is required
-		</span>
-		</div>
-	</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-12 control-label">Email</label>
+			<label for="inputEmail3" class="col-sm-12 control-label">Title</label>
 			<div class="col-sm-12">
-				<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" 
-				value="<%=email%>" ng-model="customer.email" ng-required="true">
-				<span class="help-inline"
-				ng-show="frmcustomers.email.$invalid
-				&& frmcustomers.email.$touched">Valid
-				Email field is required</span>
+				<input type="text" class="form-control has-error" id="name" name="title" placeholder="Title" value="<%=title%>" ng-model="item.title" ng-required="true">
+				<span class="help-inline" ng-show="frmcustomers.title.$invalid && frmcustomers.title.$touched">
+					title
+					field is required
+				</span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-12 control-label">Contact No</label>
+			<label for="inputEmail3" class="col-sm-12 control-label">Description</label>
 			<div class="col-sm-12">
-				<input type="text" class="form-control" id="contact_number" name="contact_number" placeholder="Contact Number" value="<%=contact_number%>" ng-model="customer.contact_number" ng-required="true">
-				<span class="help-inline" ng-show="frmcustomers.contact_number.$invalid && frmcustomers.contact_number.$touched">
-					Contact
-					number field is required
+				<input type="description" class="form-control" id="email" name="description" placeholder="Item description" value="<%=description%>" ng-model="item.description" ng-required="true">
+				<span class="help-inline" ng-show="frmcustomers.description.$invalid && frmcustomers.description.$touched">
+					Valid
+					Description field is required
 				</span>
 			</div>
 		</div>
