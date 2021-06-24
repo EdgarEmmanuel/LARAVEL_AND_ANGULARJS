@@ -1,10 +1,3 @@
-class Item {
-  constructor(title,description){
-      this.description = description;
-      this.title= title;
-  }
-}
-
 var app = angular.module('customerRecords', [])
 .constant('API_URL', 'http://localhost:8000/api/')
 .service("item",Item)

@@ -50,20 +50,21 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             "updated_at": appHelper.generateDateWithMyslFormat()
         }
 
-        var item = new item();
+        var item = new Item("test","test");
+        console.log(item.getTitle());
 
-        $http({
-            method: method,
-            url: url,
-            data: itemDataInJSON,
-            headers: { 'Content-Type': 'application/json' }
-        }).then(function (response) {
-            // console.log(response);
-            location.reload();
-        }), (function (error) {
-            // console.log(error);
-            alert('This is embarassing. An error has occurred. Please check the log for details');
-        });
+        // $http({
+        //     method: method,
+        //     url: url,
+        //     data: itemDataInJSON,
+        //     headers: { 'Content-Type': 'application/json' }
+        // }).then(function (response) {
+        //     // console.log(response);
+        //     location.reload();
+        // }), (function (error) {
+        //     // console.log(error);
+        //     alert('This is embarassing. An error has occurred. Please check the log for details');
+        // });
     }
     //delete record
     $scope.confirmDelete = function (id) {
