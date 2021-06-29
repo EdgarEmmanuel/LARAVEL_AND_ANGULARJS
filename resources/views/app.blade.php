@@ -74,7 +74,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" id="btn-save" ng-click="save(modalstate, id)" ng-disabled="frmcustomers.$invalid">Save changes</button>
+							<button type="button" class="btn btn-primary" id="btn-save" ng-click="save(modalstate, id)" ng-disabled="form_items.$invalid">Save changes</button>
 						</div>
 					</div>
 				</div>
@@ -93,10 +93,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
 		<!-- AngularJS Application Scripts -->
-		<script src="<?= asset('app/models/Item/ItemUseCase.js') ?>"></script>
 		<script src="<?= asset('app/models/Item/Item.js') ?>"></script>
 		<script src="<?= asset('app/app.js') ?>"></script>
 		<script src="<?= asset('app/helpers/app_helper.js') ?>"></script>
 		<script src="<?= asset('app/controllers/itemController.js') ?>"></script>
+		<script src="<?= asset('app/services/services.js') ?>"></script>
 	</body>
 </html>

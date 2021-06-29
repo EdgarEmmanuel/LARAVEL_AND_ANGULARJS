@@ -1,4 +1,7 @@
 app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
+    $scope.reloadPage = function (){
+        location.reload();
+    }
     //fetch items listing from 
     $http({
         method: 'GET',
@@ -11,60 +14,54 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
         alert('This is embarassing. An error has occurred. Please check the log for details');
     });
     //show modal form
-    $scope.toggle = function (modalstate, id) {
-        $scope.modalstate = modalstate;
+    $scope.toggle = function (action, id) {
+        $scope.modalstate = action;
         $scope.item = null;
-        switch (modalstate) {
+        switch (action) {
             case 'add':
                 $scope.form_title = "Add New Item";
-            break;
+                break;
             case 'edit':
                 $scope.form_title = "Item Detail";
                 $scope.id = id;
                 $http.get(API_URL + 'items/' + id)
                 .then(function (response) {
-                    // console.log(response.data);
                     $scope.item = response.data;
                 });
-            break;
+                break;
             default:
-            break;
+                break;
         }
         // console.log(id);
         $('#myModal').modal('show');
     }
     //save new record and update existing record
-    $scope.save = function (modalstate, id) {
+    $scope.save = function (action, id) {
         var url = API_URL + "items";
         var method = "POST";
         //append customer id to the URL if the form is in edit mode
-        if (modalstate === 'edit') {
+        if (action === 'edit') {
             url += "/" + id;
             method = "PATCH";
         }
-        
-        let itemDataInJSON = {
-            "title": $scope.item.title,
-            "description": $scope.item.description,
-            "created_at": appHelper.generateDateWithMyslFormat(),
-            "updated_at": appHelper.generateDateWithMyslFormat()
+
+        let itemInJson = new Item($scope.item.title,$scope.item.description).fromItemToDto();
+        itemInJson = {
+            ...itemInJson,
+            "updated_at": appHelper.generateDateWithMyslFormat(),
+            "created_at": appHelper.generateDateWithMyslFormat()
         }
 
-        var item = new Item("test","test");
-        console.log(item.getTitle());
-
-        // $http({
-        //     method: method,
-        //     url: url,
-        //     data: itemDataInJSON,
-        //     headers: { 'Content-Type': 'application/json' }
-        // }).then(function (response) {
-        //     // console.log(response);
-        //     location.reload();
-        // }), (function (error) {
-        //     // console.log(error);
-        //     alert('This is embarassing. An error has occurred. Please check the log for details');
-        // });
+        $http({
+            method: method,
+            url: url,
+            data: itemInJson,
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            $scope.reloadPage();
+        }), (function (error) {
+            alert('This is embarassing. An error has occurred. Please check the log for details');
+        });
     }
     //delete record
     $scope.confirmDelete = function (id) {
