@@ -98,10 +98,11 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 		<script src="<?= asset('app/helpers/izitoast.js') ?>"></script>
 		<!-- AngularJS Application Scripts -->
-		<script src="<?= asset('app/models/Item/Item.js') ?>"></script>
+		{{-- <script src="<?= asset('app/models/Item/Item.js') ?>"></script> --}}
+		<script src="<?= asset('app/services/services.js') ?>"></script>
 		<script src="<?= asset('app/app.js') ?>"></script>
 		<script src="<?= asset('app/helpers/app_helper.js') ?>"></script>
 		<script src="<?= asset('app/controllers/itemController.js') ?>"></script>
-		<script src="<?= asset('app/services/services.js') ?>"></script>
+		<script src="<?= asset('app/services/models.js') ?>"></script>
 	</body>
 </html>

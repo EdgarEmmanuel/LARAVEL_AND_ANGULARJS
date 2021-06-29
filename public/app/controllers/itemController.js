@@ -17,6 +17,7 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
             alert('This is embarassing. An error has occurred. Please check the log for details');
         })
 
+        console.log(new Car("mercedes").getName())
     //show modal form
     $scope.displayTheModal = function (action, id) {
         $scope.modalstate = action;
