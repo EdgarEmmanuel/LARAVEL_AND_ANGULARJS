@@ -44,13 +44,16 @@ app
         }
     },
     this.successToast = function(title,message,callback){
-        let basic = {timeout: 5000, icon: 'fa fa-chrome', title: title, message: message};
+        let basicToastConfiguration = {timeout: 5000, icon: 'fa fa-chrome', title: title, message: message};
         if(callback.closed){
-            basic = {...basic,onClosed:function (){
-                appHelper.reloadPage();
-            }};
+            basicToastConfiguration = {
+                ...basicToastConfiguration,
+                onClosed:function (){
+                    appHelper.reloadPage();
+                }
+            };
         }
-        iziToast.success(basic);
+        iziToast.success(basicToastConfiguration);
     }
     this.complexToast = function(){
         iziToast.show({

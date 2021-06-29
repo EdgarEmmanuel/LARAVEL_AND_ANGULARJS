@@ -57,7 +57,11 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
 
         appHelper.sendHttpRequest(url,method,{ 'Content-Type': 'application/json' },itemInJson)
         .then((data)=>{
-             iziToastHelper.displaySimpleToast("success","MISE A JOUR","MODIFICATION EFFECTUE AVEC SUCCESS",callback={closed:true});
+            action === 'edit'
+                ?
+             iziToastHelper.displaySimpleToast("success","MISE A JOUR","MODIFICATION EFFECTUE AVEC SUCCESS",callback={closed:true})
+                :
+                iziToastHelper.displaySimpleToast("success","INSERTION ITEM","INSERTION EFFECTUE AVEC SUCCESS",callback={closed:true});
         }).catch((err)=>{
             alert('This is embarassing. An error has occurred. Please check the log for details');
         })
@@ -70,7 +74,7 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
             if (isDeleteConfirmed) {
                 appHelper.sendHttpRequest(API_URL + 'items/' + index,'DELETE')
                     .then((data)=>{
-                        appHelper.reloadPage();
+                        iziToastHelper.displaySimpleToast("success","SUPPRESSION","SUPPRESSION EFFECTUE AVEC SUCCESS",callback={closed:true});
                     }).catch((err)=>{
                         alert('Unable to delete');
                     })
