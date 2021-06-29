@@ -1,41 +1,41 @@
 <!doctype html>
-<html lang="en" ng-app="customerRecords" ng-cloak>
+<html lang="en" ng-app="itemsApp" ng-cloak>
 	<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,
-	shrink-to-fit=no">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-	<title>Laravel 6 Crud application Angular JS Tutorial</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,
+		shrink-to-fit=no">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+		<title>Laravel 6 Crud application Angular JS</title>
 	</head>
 	<body>
 		<div class="container" ng-controller="itemsController">
 			<header>
-				<h2>customers Database</h2>
+				<h2>Items</h2>
 			</header>
 			<div>
 				<table class="table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Title</th>
-						<th>Description</th>
-						<th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="toggle('add', 0)">Add New Item</button></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="customer in customers">
-						<td><%= customer.id %></td>
-						<td><%= customer.title %></td>
-						<td><%= customer.description %></td>
-						<td>
-							<button class="btn btn-default btn-xs btn-detail" ng-click="toggle('edit',customer.id )">Edit</button>
-							<button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(customer.id)">Delete</button>
-						</td>
-					</tr>
-				</tbody>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="displayTheModal('add', 0)">Add New Item</button></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="customer in customers track by $index">
+							<td><%= ++$index %></td>
+							<td><%= customer.title %></td>
+							<td><%= customer.description %></td>
+							<td>
+								<button class="btn btn-default btn-xs btn-detail" ng-click="displayTheModal('edit',customer.id )">Edit</button>
+								<button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(customer.id)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 				<!-- Modal -->

@@ -1,4 +1,4 @@
-var app = angular.module('customerRecords', [])
+var app = angular.module('itemsApp', [])
 .constant('API_URL', 'http://localhost:8000/api/')
 // .service("item",Item)
 .config(function($interpolateProvider) {

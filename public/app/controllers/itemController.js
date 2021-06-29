@@ -1,20 +1,23 @@
 app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
+    // global variables
     $scope.reloadPage = function (){
         location.reload();
     }
+    $scope.customers = [];
+
     //fetch items listing from 
     $http({
         method: 'GET',
         url: API_URL + "items"
     }).then(function (response) {
         $scope.customers = response.data.data;
-        //console.log(response.data.data);
     }, function (error) {
-        console.log(error);
+        $scope.customers = [];
         alert('This is embarassing. An error has occurred. Please check the log for details');
     });
+
     //show modal form
-    $scope.toggle = function (action, id) {
+    $scope.displayTheModal = function (action, id) {
         $scope.modalstate = action;
         $scope.item = null;
         switch (action) {
@@ -32,7 +35,6 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             default:
                 break;
         }
-        // console.log(id);
         $('#myModal').modal('show');
     }
     //save new record and update existing record
@@ -71,7 +73,6 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
                 method: 'DELETE',
                 url: API_URL + 'items/' + id
             }).then(function (response) {
-                console.log(response);
                 location.reload();
             }, function (error) {
                 console.log(error);
