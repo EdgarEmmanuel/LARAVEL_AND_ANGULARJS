@@ -1,27 +1,15 @@
-app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
+app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziToastHelper) {
     // global variables
-    $scope.reloadPage = function (){
-        location.reload();
-    }
     $scope.customers = [];
 
     // ==================== start global functions 
-    $scope.sendHttpRequest = function(endpoint_url,method,headers={"Content-Type":"application/json"},data={}){
-        return $http({
-            method: method,
-            url: endpoint_url,
-            data: data,
-            headers: headers
-        });
-    }
-
     $scope.changeModalTitle = function (title) {
         $scope.form_title = title;
     }
 
     // ======================== end global functions
 
-    $scope.sendHttpRequest(API_URL + "items","GET")
+    appHelper.sendHttpRequest(API_URL + "items","GET")
         .then((response)=>{
             $scope.customers = response.data.data;
         }).catch((err)=>{
@@ -40,7 +28,7 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             break;
             case 'edit':
                 $scope.changeModalTitle("Item Detail");
-                $scope.sendHttpRequest(API_URL + 'items/' + id,"GET")
+                appHelper.sendHttpRequest(API_URL + 'items/' + id,"GET")
                 .then(function (response) {
                     $scope.item = response.data;
                 });
@@ -67,9 +55,11 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             "created_at": appHelper.generateDateWithMyslFormat()
         }
 
-        $scope.sendHttpRequest(url,method,{ 'Content-Type': 'application/json' },itemInJson)
+        appHelper.sendHttpRequest(url,method,{ 'Content-Type': 'application/json' },itemInJson)
         .then((data)=>{
-            $scope.reloadPage();
+            //iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
+            iziToastHelper.displaySimpleToast();
+            //appHelper.reloadPage();
         }).catch((err)=>{
             alert('This is embarassing. An error has occurred. Please check the log for details');
         })
@@ -80,9 +70,9 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
         if(index){
             var isDeleteConfirmed = confirm('Are you sure you want to delete this Item record?');
             if (isDeleteConfirmed) {
-                $scope.sendHttpRequest(API_URL + 'items/' + index,'DELETE')
+                appHelper.sendHttpRequest(API_URL + 'items/' + index,'DELETE')
                     .then((data)=>{
-                        $scope.reloadPage();
+                        appHelper.reloadPage();
                     }).catch((err)=>{
                         alert('Unable to delete');
                     })
