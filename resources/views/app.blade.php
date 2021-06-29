@@ -49,12 +49,12 @@
 									</button>
 								</div>
 						<div class="modal-body">
-							<form name="frmcustomers" class="form-horizontal" novalidate="">
+							<form name="form_items" class="form-horizontal" novalidate="">
 								<div class="form-group error">
 									<label for="inputEmail3" class="col-sm-12 control-label">Title</label>
 									<div class="col-sm-12">
 										<input type="text" class="form-control has-error" id="name" name="title" placeholder="Title" value="<%=title%>" ng-model="item.title" ng-required="true">
-										<span class="help-inline" ng-show="frmcustomers.title.$invalid && frmcustomers.title.$touched">
+										<span class="help-inline" ng-show="form_items.title.$invalid && form_items.title.$touched">
 											title
 											field is required
 										</span>
@@ -64,7 +64,7 @@
 									<label for="inputEmail3" class="col-sm-12 control-label">Description</label>
 									<div class="col-sm-12">
 										<input type="description" class="form-control" id="email" name="description" placeholder="Item description" value="<%=description%>" ng-model="item.description" ng-required="true">
-										<span class="help-inline" ng-show="frmcustomers.description.$invalid && frmcustomers.description.$touched">
+										<span class="help-inline" ng-show="form_items.description.$invalid && form_items.description.$touched">
 											Valid
 											Description field is required
 										</span>
