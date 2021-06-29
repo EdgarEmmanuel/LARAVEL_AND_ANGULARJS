@@ -5,10 +5,10 @@ class Item {
     }
   
     getTitle(){
-      return this.description;
+      return this.title;
     }
   
     getDescription(){
-      
+        return this.description;
     }
 }
