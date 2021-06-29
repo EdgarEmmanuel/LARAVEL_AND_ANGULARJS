@@ -57,9 +57,7 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
 
         appHelper.sendHttpRequest(url,method,{ 'Content-Type': 'application/json' },itemInJson)
         .then((data)=>{
-            //iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
-            iziToastHelper.displaySimpleToast();
-            //appHelper.reloadPage();
+             iziToastHelper.displaySimpleToast("success","MISE A JOUR","MODIFICATION EFFECTUE AVEC SUCCESS",callback={closed:true});
         }).catch((err)=>{
             alert('This is embarassing. An error has occurred. Please check the log for details');
         })

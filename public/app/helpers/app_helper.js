@@ -33,10 +33,25 @@ app
     }
 })
 // ======================== iziToast Helper ===========================
-.service("iziToastHelper",function(){
-    this.displaySimpleToast = function (){
-        iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
+.service("iziToastHelper",function(appHelper){
+    this.displaySimpleToast = function (type,title,message,callback={opening:false,opened:false,closing:false,closed:false}){
+        switch(type){
+            case 'success':
+                    this.successToast(title,message,callback);
+                break;
+            default:
+                break;
+        }
     },
+    this.successToast = function(title,message,callback){
+        let basic = {timeout: 5000, icon: 'fa fa-chrome', title: title, message: message};
+        if(callback.closed){
+            basic = {...basic,onClosed:function (){
+                appHelper.reloadPage();
+            }};
+        }
+        iziToast.success(basic);
+    }
     this.complexToast = function(){
         iziToast.show({
             color: 'dark',
