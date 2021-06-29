@@ -5,35 +5,48 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
     }
     $scope.customers = [];
 
-    //fetch items listing from 
-    $http({
-        method: 'GET',
-        url: API_URL + "items"
-    }).then(function (response) {
-        $scope.customers = response.data.data;
-    }, function (error) {
-        $scope.customers = [];
-        alert('This is embarassing. An error has occurred. Please check the log for details');
-    });
+    // ==================== start global functions 
+    $scope.sendHttpRequest = function(endpoint_url,method,headers={"Content-Type":"application/json"},data={}){
+        return $http({
+            method: method,
+            url: endpoint_url,
+            data: data,
+            headers: headers
+        });
+    }
+
+    $scope.changeModalTitle = function (title) {
+        $scope.form_title = title;
+    }
+
+    // ======================== end global functions
+
+    $scope.sendHttpRequest(API_URL + "items","GET")
+        .then((response)=>{
+            $scope.customers = response.data.data;
+        }).catch((err)=>{
+            $scope.customers=[];
+            alert('This is embarassing. An error has occurred. Please check the log for details');
+        })
 
     //show modal form
     $scope.displayTheModal = function (action, id) {
         $scope.modalstate = action;
         $scope.item = null;
+        $scope.id = id!=null ? id : null;
         switch (action) {
             case 'add':
-                $scope.form_title = "Add New Item";
-                break;
+                $scope.changeModalTitle("Add New Item");
+            break;
             case 'edit':
-                $scope.form_title = "Item Detail";
-                $scope.id = id;
-                $http.get(API_URL + 'items/' + id)
+                $scope.changeModalTitle("Item Detail");
+                $scope.sendHttpRequest(API_URL + 'items/' + id,"GET")
                 .then(function (response) {
                     $scope.item = response.data;
                 });
-                break;
+            break;
             default:
-                break;
+            break;
         }
         $('#myModal').modal('show');
     }
@@ -54,32 +67,28 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper) {
             "created_at": appHelper.generateDateWithMyslFormat()
         }
 
-        $http({
-            method: method,
-            url: url,
-            data: itemInJson,
-            headers: { 'Content-Type': 'application/json' }
-        }).then(function (response) {
+        $scope.sendHttpRequest(url,method,{ 'Content-Type': 'application/json' },itemInJson)
+        .then((data)=>{
             $scope.reloadPage();
-        }), (function (error) {
+        }).catch((err)=>{
             alert('This is embarassing. An error has occurred. Please check the log for details');
-        });
+        })
     }
     //delete record
     $scope.confirmDelete = function (id) {
-        var isConfirmDelete = confirm('Are you sure you want this record?');
-        if (isConfirmDelete) {
-            $http({
-                method: 'DELETE',
-                url: API_URL + 'items/' + id
-            }).then(function (response) {
-                location.reload();
-            }, function (error) {
-                console.log(error);
-                alert('Unable to delete');
-            });
-        } else {
-            return false;
+        let index = id != null ? id : null;
+        if(index){
+            var isDeleteConfirmed = confirm('Are you sure you want to delete this Item record?');
+            if (isDeleteConfirmed) {
+                $scope.sendHttpRequest(API_URL + 'items/' + index,'DELETE')
+                    .then((data)=>{
+                        $scope.reloadPage();
+                    }).catch((err)=>{
+                        alert('Unable to delete');
+                    })
+            } else {
+                return false;
+            }
         }
     }
 });
