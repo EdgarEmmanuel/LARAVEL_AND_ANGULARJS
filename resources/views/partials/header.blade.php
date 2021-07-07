@@ -11,5 +11,4 @@
 		<!-- css for iziToast -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
 		<title>Laravel 6 Crud application Angular JS</title>
-		<base href="/"/>
 	</head>
