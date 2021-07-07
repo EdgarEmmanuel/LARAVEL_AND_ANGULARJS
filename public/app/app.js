@@ -1,4 +1,4 @@
-var app = angular.module('itemsApp', [])
+var app = angular.module('itemsApp', ['ngRoute'])
 .constant('API_URL', 'http://localhost:8000/api/')
 // .service("item",Item)
 .config(function($interpolateProvider) {
@@ -9,3 +9,6 @@ var app = angular.module('itemsApp', [])
     $interpolateProvider.startSymbol('<%=');
     $interpolateProvider.endSymbol('%>');
   });
+
+
+    

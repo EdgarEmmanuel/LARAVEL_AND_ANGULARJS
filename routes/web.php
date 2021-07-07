@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\View;
 
 
 Route::get('/', "HomeController@index");
+
+Route::get("/page/{model}","HomeController@getPage");

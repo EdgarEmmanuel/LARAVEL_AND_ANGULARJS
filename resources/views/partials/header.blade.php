@@ -11,16 +11,5 @@
 		<!-- css for iziToast -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
 		<title>Laravel 6 Crud application Angular JS</title>
+		<base href="/"/>
 	</head>
-	<body ng-controller="itemsController">
-
-
-        <div class="app-content content ">
-            <div class="content-wrapper">
-                <div class="content-header row">
-                </div>
-    
-                <div class="content-body" ng-view>
-                </div>
-            </div>
-        </div>

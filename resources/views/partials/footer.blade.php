@@ -10,14 +10,15 @@ crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
 <!-- script for iziToast -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 <script src="<?= asset('app/helpers/izitoast.js') ?>"></script>
 <!-- AngularJS Application Scripts -->
-{{-- <script src="<?= asset('app/models/Item/Item.js') ?>"></script> --}}
 <script src="<?= asset('app/services/services.js') ?>"></script>
 <script src="<?= asset('app/app.js') ?>"></script>
 <script src="<?= asset('app/helpers/app_helper.js') ?>"></script>
+<script src="<?= asset('app/routes/app_route.js') ?>"></script>
 <script src="<?= asset('app/controllers/itemController.js') ?>"></script>
 <script src="<?= asset('app/services/models.js') ?>"></script>
 </body>
