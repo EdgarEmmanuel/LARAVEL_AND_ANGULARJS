@@ -1,19 +1,7 @@
-<!doctype html>
-<html lang="en" ng-app="itemsApp" ng-cloak>
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1,
-		shrink-to-fit=no">
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-		crossorigin="anonymous">
-		<!-- css for iziToast -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
-		<title>Laravel 6 Crud application Angular JS</title>
-	</head>
-	<body>
-		<div class="container" ng-controller="itemsController">
+@extends("layouts.app")
+
+@section("content")
+		<div class="container">
 			<header>
 				<h2>Items</h2>
 			</header>
@@ -82,27 +70,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-		<!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
-		<!-- script for iziToast -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-		<script src="<?= asset('app/helpers/izitoast.js') ?>"></script>
-		<!-- AngularJS Application Scripts -->
-		{{-- <script src="<?= asset('app/models/Item/Item.js') ?>"></script> --}}
-		<script src="<?= asset('app/services/services.js') ?>"></script>
-		<script src="<?= asset('app/app.js') ?>"></script>
-		<script src="<?= asset('app/helpers/app_helper.js') ?>"></script>
-		<script src="<?= asset('app/controllers/itemController.js') ?>"></script>
-		<script src="<?= asset('app/services/models.js') ?>"></script>
-	</body>
-</html>
+
+@endsection

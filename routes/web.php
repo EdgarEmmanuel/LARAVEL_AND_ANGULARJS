@@ -15,6 +15,4 @@ use Illuminate\Support\Facades\View;
 */
 
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', "HomeController@index");

@@ -16,8 +16,6 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
             $scope.customers=[];
             alert('This is embarassing. An error has occurred. Please check the log for details');
         })
-
-        console.log(new Car("mercedes").getName())
     //show modal form
     $scope.displayTheModal = function (action, id) {
         $scope.modalstate = action;
@@ -84,4 +82,9 @@ app.controller('itemsController',function ($scope, $http, API_URL,appHelper,iziT
             }
         }
     }
+
+
+    $scope.$on("$routeChangeStart",function(event,next,current){
+        console.log(event);
+    })
 });
