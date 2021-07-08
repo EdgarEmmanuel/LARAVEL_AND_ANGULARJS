@@ -9,7 +9,7 @@
           <a class="nav-link active" aria-current="page" href="#">Active</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="#!/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#!/list-car">ListCar</a>
